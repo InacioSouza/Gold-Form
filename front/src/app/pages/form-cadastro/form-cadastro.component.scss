@@ -1,0 +1,100 @@
+@import url("https://fonts.googleapis.com/css2?family=Delius&display=swap");
+
+.conteudo {
+  margin: 0;
+  padding: 20px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: auto;
+  height: 100vh;
+
+  h1 {
+    margin-top: 20px;
+    color: rgb(91, 214, 208);
+    font-size: 50px;
+    font-weight: 400;
+  }
+
+  p {
+    font-family: "Delius", sans-serif;
+    font-size: 24px;
+    color: white;
+    text-shadow: #fc0 1px 0 10px;
+    font-weight: 500;
+  }
+
+  form {
+    margin-top: 20px;
+    padding-bottom: 50px;
+    display: flex;
+    gap: 40px;
+
+    h2 {
+      color: rgb(91, 214, 208);
+      font-size: 30px;
+      font-weight: 400;
+    }
+
+    .entrada {
+      margin-top: 10px;
+      display: flex;
+      flex-direction: column;
+
+      gap: 2px;
+
+      label {
+        color: white;
+
+        small {
+          color: red;
+          font-size: 20px;
+        }
+      }
+
+      input,
+      select {
+        background-color: rgb(126, 204, 178);
+        border-radius: 10px;
+
+        padding: 4px;
+        width: 350px;
+
+        color: rgb(255, 255, 255);
+        font-size: 20px;
+        font-weight: 450;
+      }
+
+      span {
+        color: red;
+        font-weight: 400;
+      }
+    }
+  }
+
+  .btn {
+    width: 100%;
+    display: flex;
+    justify-content: right;
+
+    padding-right: 10%;
+
+    button {
+      color: blue;
+      font-size: 24px;
+
+      border-radius: 5px;
+
+      cursor: pointer;
+
+      &:hover {
+        background-color: rgb(194, 192, 192);
+      }
+    }
+  }
+}
+
+.entrada-invalida {
+  border: solid 2px red;
+}

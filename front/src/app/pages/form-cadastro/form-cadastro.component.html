@@ -1,0 +1,140 @@
+<div class="conteudo">
+    <div class="descricao">
+        <h1>Cadastro</h1>
+        <p>"Informação se paga com informação!<br>Para os dados deste sistema acessar com os seus você deve entrar!"
+        </p>
+    </div>
+
+    <form #formCadastro="ngForm">
+
+        <div class="infos-pessoais agrupamento">
+
+            <h2>Informações pessoais</h2>
+
+            <div class="entrada">
+                <label for="nome">Nome<small>*</small></label>
+                <input #nome="ngModel" [(ngModel)]="dados.nome" name="nome" id="nome" type="text" required minlength="3"
+                    [class.entrada-invalida]="!nome.valid && nome.touched">
+                <span *ngIf="nome.errors?.['required'] && nome.touched">Campo obrigatório!</span>
+                <span *ngIf="nome.errors?.['minlength'] && nome.touched">O nome deve ter mais de 3 caracteres!</span>
+            </div>
+
+            <div class="entrada">
+                <label for="idade">Idade<small>*</small></label>
+                <input #idade="ngModel" [(ngModel)]="dados.idade" name="idade" id="noidade" type="text" required
+                    pattern="[0-9]+$" [class.entrada-invalida]="!idade.valid && idade.touched">
+                <span *ngIf="idade.errors?.['pattern'] && idade.touched">Digite apenas números!</span>
+                <span *ngIf="idade.errors?.['required'] && idade.touched">Campo obrigatório!</span>
+
+            </div>
+        </div>
+
+        <div class="endereco agrupamento">
+
+            <h2>Dados de Endereço</h2>
+
+            <div class="entrada">
+                <label for="cep">CEP<small>*</small></label>
+                <input (blur)="preencheEnderecoPorCEP($event)" #cep="ngModel" [(ngModel)]="dados.endereco.cep"
+                    name="cep" id="cep" type="text" required pattern="[0-9]+$" minlength="8" [maxLength]="8"
+                    [class.entrada-invalida]="!cep.valid && cep.touched">
+
+                <span *ngIf="cep.errors?.['pattern'] && cep.touched">Digite apenas números!</span>
+                <span *ngIf="cep.errors?.['required'] && cep.touched">Campo obrigatório!!</span>
+                <span *ngIf="cep.errors?.['minlength'] && cep.touched">O CEP deve ter 8 caracteres!</span>
+                <span *ngIf="cep.errors?.['maxLength'] && cep.touched">O CEP deve ter 8 caracteres!</span>
+            </div>
+
+            <div class="entrada">
+                <label for="estado">Estado<small>*</small></label>
+                <select #estado="ngModel" [(ngModel)]="dados.endereco.estado" name="estado" id="estado"
+                    (change)="carregaCidades($event)" required
+                    [class.entrada-invalida]="!estado.valid && estado.touched">
+                    <option *ngFor="let uf of ufs" [value]="uf.sigla">{{uf.nome + ' - ' + uf.sigla}}</option>
+                </select>
+                <span *ngIf="!estado.valid && estado.touched">Selecione um estado!</span>
+            </div>
+
+            <div class="entrada">
+                <label for="cidade">Cidade<small>*</small></label>
+                <select #cidade="ngModel" [(ngModel)]="dados.endereco.cidade" name="cidade" id="cidade" required
+                    [class.entrada-invalida]="!cidade.valid && cidade.touched">
+                    <option *ngFor="let cidade of cidades" [value]="cidade.nome">{{ cidade.nome }}</option>
+                </select>
+                <span *ngIf="!cidade.valid && cidade.touched">Selecione uma ciade!</span>
+            </div>
+
+            <div class="entrada">
+                <label for="bairro">Bairro<small>*</small></label>
+                <input #bairro="ngModel" [(ngModel)]="dados.endereco.bairro" name="bairro" id="bairro" type="text"
+                    required [class.entrada-invalida]="!bairro.valid && bairro.touched">
+                <span *ngIf="!bairro.valid && bairro.touched">Campo obrigatório!</span>
+            </div>
+
+            <div class="entrada">
+                <label for="rua">Rua<small>*</small></label>
+                <input #rua="ngModel" [(ngModel)]="dados.endereco.rua" name="rua" id="rua" type="text" required
+                    [class.entrada-invalida]="!rua.valid && rua.touched">
+                <span *ngIf="!rua.valid && rua.touched">Campo obrigatório!</span>
+            </div>
+
+            <div class="entrada">
+                <label for="numero">Número<small>*</small></label>
+                <input #numero="ngModel" [(ngModel)]="dados.endereco.numero" name="numero" id="numero" type="text"
+                    required [class.entrada-invalida]="!numero.valid && numero.touched">
+                <span *ngIf="!numero.valid && numero.touched">Campo obrigatório!</span>
+            </div>
+
+            <div class="entrada">
+                <label for="complemento">Complemento</label>
+                <input #complemento="ngModel" [(ngModel)]="dados.endereco.complemento" name="complemento"
+                    id="complemento" type="text">
+            </div>
+        </div>
+
+        <div class="infos-acesso agrupamento">
+
+            <h2>Dados de acesso</h2>
+
+            <div class="entrada">
+                <label for="email">Email<small>*</small></label>
+                <input #email="ngModel" [(ngModel)]="dados.email" name="email" id="email" type="email" required email
+                    [class.entrada-invalida]="!email.valid && email.touched">
+                <span *ngIf="email.errors?.['required'] && email.touched">Campo obrigatório!</span>
+                <span *ngIf="email.errors?.['email'] && email.touched">Formato de email inválido!</span>
+            </div>
+
+            <div class="entrada">
+                <label for="confirmaEmail">Confirme o email<small>*</small></label>
+                <input #confirmaEmail="ngModel" [(ngModel)]="dados.confirmaEmail" name="confirmaEmail"
+                    id="confirmaEmail" type="email" required email [appCheckValue]="email.value"
+                    [class.entrada-invalida]="!confirmaEmail.valid && confirmaEmail.touched">
+                <span *ngIf="confirmaEmail.errors?.['required'] && confirmaEmail.touched">Campo obrigatório!</span>
+                <span *ngIf="confirmaEmail.errors?.['email'] && confirmaEmail.touched">Formato de email inválido!</span>
+                <span *ngIf="confirmaEmail.errors?.['valorDiferente'] && confirmaEmail.touched">E-mail diferente!</span>
+            </div>
+
+            <div class="entrada">
+                <label for="senha">Senha<small>*</small></label>
+                <input #senha="ngModel" [(ngModel)]="dados.senha" name="senha" id="senha" type="password" required
+                    minlength="6" [class.entrada-invalida]="!senha.valid && senha.touched">
+                <span *ngIf="senha.errors?.['required'] && senha.touched">Campo obrigatório!</span>
+                <span *ngIf="senha.errors?.['minlength'] && senha.touched">A senha deve ter no mínimo 6
+                    caracteres!</span>
+            </div>
+
+            <div class="entrada">
+                <label for="confirmaSenha">Confirme sua senha<small>*</small></label>
+                <input #confirmaSenha="ngModel" [(ngModel)]="dados.confirmaSenha" name="confirmaSenha"
+                    id="confirmaSenha" type="password" required [appCheckValue]="senha.value"
+                    [class.entrada-invalida]="!confirmaSenha.valid && confirmaSenha.touched">
+                <span *ngIf="confirmaSenha.errors?.['required'] && confirmaSenha.touched">Campo obrigatório!</span>
+                <span *ngIf="confirmaSenha.errors?.['valorDiferente'] && confirmaSenha.touched">Senha diferente!</span>
+            </div>
+        </div>
+    </form>
+
+    <div class="btn">
+        <button (click)="cadastrar(formCadastro.valid)">Cadastrar</button>
+    </div>
+</div>
