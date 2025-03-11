@@ -10,13 +10,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CheckValueDirective } from './shared/diretivas/check-value.directive';
 import { HttpClientModule } from '@angular/common/http';
 import { FormLoginComponent } from './pages/form-login/form-login.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     FormCadastroComponent,
     CheckValueDirective,
-    FormLoginComponent
+    FormLoginComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,

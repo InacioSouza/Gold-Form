@@ -18,7 +18,7 @@ export class FormLoginComponent {
   }
 
   isInvalid(campo: string) {
-    return (!this.formLogin?.valid && this.formLogin.get(campo)?.touched) as boolean;
+    return (!this.formLogin.get(campo)?.valid && this.formLogin.get(campo)?.touched) as boolean;
   }
 
   login() {

@@ -1,0 +1,65 @@
+.conteudo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  h1 {
+    margin-top: 20px;
+    margin-bottom: 90px;
+
+    padding: 10px;
+
+    color: rgb(91, 214, 208);
+    font-size: 40px;
+    font-weight: 450;
+
+    text-align: center;
+  }
+
+  .descricao {
+    display: flex;
+    gap: 20px;
+
+    @media (max-width: 850px) {
+      flex-direction: column;
+    }
+
+    .tesouro {
+      background-image: url(/assets/images/tesouro.png);
+      width: 400px;
+      height: 400px;
+    }
+
+    .texto {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      width: 400px;
+
+      p {
+        font-family: "Delius", sans-serif;
+        font-size: 24px;
+        color: white;
+        text-shadow: #fc0 1px 0 10px;
+        font-weight: 500;
+      }
+
+      a {
+        display: flex;
+        align-items: center;
+
+        font-size: 24px;
+        font-weight: bold;
+        color: aqua;
+        text-decoration: none;
+
+        .icone {
+          background-image: url(/assets/images/github.svg);
+          width: 100px;
+          height: 100px;
+        }
+      }
+    }
+  }
+}
