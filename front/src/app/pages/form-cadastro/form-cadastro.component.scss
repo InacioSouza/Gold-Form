@@ -71,6 +71,10 @@
         font-weight: 400;
       }
     }
+
+    @media (max-width: 1210px) {
+      flex-direction: column;
+    }
   }
 
   .btn {
@@ -78,7 +82,8 @@
     display: flex;
     justify-content: right;
 
-    padding-right: 10%;
+    padding-right: 15%;
+    padding-bottom: 50px;
 
     button {
       color: blue;
@@ -91,6 +96,10 @@
       &:hover {
         background-color: rgb(194, 192, 192);
       }
+    }
+
+    @media (min-width: 1170px) {
+      padding-right: 25%;
     }
   }
 }
