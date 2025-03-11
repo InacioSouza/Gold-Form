@@ -6,15 +6,17 @@ import { ToastrModule } from 'ngx-toastr';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormCadastroComponent } from './pages/form-cadastro/form-cadastro.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CheckValueDirective } from './shared/diretivas/check-value.directive';
 import { HttpClientModule } from '@angular/common/http';
+import { FormLoginComponent } from './pages/form-login/form-login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     FormCadastroComponent,
-    CheckValueDirective
+    CheckValueDirective,
+    FormLoginComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +28,8 @@ import { HttpClientModule } from '@angular/common/http';
       timeOut: 4000,
       positionClass: 'toast-top-right',
       preventDuplicates: true,
-    })
+    }),
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
