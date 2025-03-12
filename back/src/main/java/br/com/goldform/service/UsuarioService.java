@@ -2,6 +2,7 @@ package br.com.goldform.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import br.com.goldform.controller.dto.UsuarioDTO;
@@ -78,6 +79,10 @@ public class UsuarioService {
 
 		Usuario usuario = new Usuario(usuarioForm);
 		usuario.setEndereco(endereco);
+
+		String senhaCriptografada = new BCryptPasswordEncoder().encode(usuarioForm.senha());
+		usuario.setSenha(senhaCriptografada);
+
 		usuario = usuarioRepo.save(usuario);
 
 		UsuarioDTO usuarioSalvoDTO = new UsuarioDTO(usuario);

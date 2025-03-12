@@ -20,7 +20,7 @@ public class UsuarioController {
 
 	@PostMapping("/cadastro")
 	public ResponseEntity<?> cadastrar(@Valid @RequestBody UsuarioFORM usuarioForm) {
-		
+
 		return this.service.cadastrar(usuarioForm);
 	}
 
