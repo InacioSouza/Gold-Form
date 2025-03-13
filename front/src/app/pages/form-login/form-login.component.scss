@@ -104,6 +104,22 @@
       }
     }
   }
+
+  .semCadastro{
+    margin-top: 20px;
+    a {
+      color: rgb(0, 247, 255);
+      text-decoration: underline;
+      cursor: pointer;
+
+      font-weight: 450;
+      font-size: 20px;
+
+      &:hover{
+        text-shadow: #fc0 1px 0 10px;
+      }
+    }
+  }
 }
 
 .entrada-invalida {

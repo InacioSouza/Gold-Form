@@ -25,7 +25,7 @@ public class TokenService {
 		try {
 			Algorithm algorithm = Algorithm.HMAC256(secret);
 
-			String token = JWT.create().withIssuer("gold-form").withSubject(usuario.getNome())
+			String token = JWT.create().withIssuer("gold-form").withSubject(usuario.getEmail())
 					.withExpiresAt(genExpirationDate()).sign(algorithm);
 
 			return token;

@@ -17,7 +17,7 @@ import br.com.goldform.service.TokenService;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/login")
+@RequestMapping("/auth")
 public class AuthenticationController {
 
 	@Autowired
@@ -29,8 +29,9 @@ public class AuthenticationController {
 	@Autowired
 	private TokenService tokenService;
 
-	@PostMapping
+	@PostMapping("/login")
 	public ResponseEntity<?> login(@RequestBody @Valid AuthenticationFORM dados) {
+		System.out.println("CREDENCIAIS: " + dados.email() + " - " + dados.senha());
 
 		var usernamePassword = new UsernamePasswordAuthenticationToken(dados.email(), dados.senha());
 

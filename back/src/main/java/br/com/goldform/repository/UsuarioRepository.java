@@ -10,7 +10,7 @@ import br.com.goldform.repository.entity.Usuario;
 public interface UsuarioRepository extends CrudRepository<Usuario, Integer> {
 
 	boolean existsByEmail(String email);
-	
+
 	UserDetails findByEmail(String email);
 
 }
