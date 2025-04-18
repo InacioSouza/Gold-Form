@@ -11,9 +11,11 @@
                 <label for="email">E-mail</label>
                 <input formControlName="email" id="email" name="email" type="email"
                     [class.entrada-invalida]="isInvalid('email')" placeholder="indiana.jones@gold.com">
-                <span *ngIf="formLogin.get('email')?.errors?.['required'] && formLogin.get('email')?.touched">O email é
+                <span *ngIf="formLogin.get('email')?.errors?.['required'] && formLogin.get('email')?.touched">O
+                    email é
                     obrigatório!</span>
-                <span *ngIf="formLogin.get('email')?.errors?.['email'] && formLogin.get('email')?.touched">Formato de
+                <span *ngIf="formLogin.get('email')?.errors?.['email'] && formLogin.get('email')?.touched">Formato
+                    de
                     email inválido!</span>
             </div>
 
@@ -21,7 +23,8 @@
                 <label for="senha">Senha</label>
                 <input formControlName="senha" id="senha" name="senha" type="password"
                     [class.entrada-invalida]="isInvalid('senha')">
-                <span *ngIf="formLogin.get('senha')?.errors?.['required'] && formLogin.get('senha')?.touched">A senha é
+                <span *ngIf="formLogin.get('senha')?.errors?.['required'] && formLogin.get('senha')?.touched">A
+                    senha é
                     obrigatória!</span>
             </div>
         </form>

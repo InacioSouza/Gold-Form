@@ -13,4 +13,9 @@ public class HelloWorld {
 	public ResponseEntity<?> hello() {
 		return ResponseEntity.ok("Hello, World!");
 	}
+
+	@GetMapping("/protegido")
+	public ResponseEntity<?> helloProtegido() {
+		return ResponseEntity.ok("Hello, World!");
+	}
 }

@@ -12,4 +12,9 @@ public class TratadorException {
 	public ResponseEntity<?> tratarErroRegistroEncontrado(RegistroEncontradoException exception) {
 		return ResponseEntity.status(HttpStatus.CONFLICT).body(exception.getMessage());
 	}
+
+	@ExceptionHandler(UsuarioJaCadastradoException.class)
+	public ResponseEntity<?> tratarErroUsuarioJaCadastrado(UsuarioJaCadastradoException exception) {
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(exception.getMessage());
+	}
 }

@@ -25,8 +25,11 @@ public class TokenService {
 		try {
 			Algorithm algorithm = Algorithm.HMAC256(secret);
 
-			String token = JWT.create().withIssuer("gold-form").withSubject(usuario.getEmail())
-					.withExpiresAt(genExpirationDate()).sign(algorithm);
+			String token = JWT.create()
+					.withIssuer("gold-form")
+					.withSubject(usuario.getEmail())
+					.withExpiresAt(genExpirationDate())
+					.sign(algorithm);
 
 			return token;
 
@@ -43,7 +46,11 @@ public class TokenService {
 		try {
 			Algorithm algorithm = Algorithm.HMAC256(secret);
 
-			return JWT.require(algorithm).withIssuer("gold-form").build().verify(token).getSubject();
+			return JWT.require(algorithm)
+					.withIssuer("gold-form")
+					.build()
+					.verify(token)
+					.getSubject();
 
 		} catch (JWTVerificationException exception) {
 			return "";

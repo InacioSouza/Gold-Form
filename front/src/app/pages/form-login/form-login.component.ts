@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
+import { AuthService } from 'src/app/shared/services/auth/auth.service';
+
 
 @Component({
   selector: 'app-form-login',
@@ -10,7 +13,8 @@ export class FormLoginComponent {
 
   formLogin!: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) {
+
+  constructor(private formBuilder: FormBuilder, private toastr: ToastrService, private authService: AuthService) {
     this.formLogin = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       senha: ['', [Validators.required]]
@@ -22,6 +26,11 @@ export class FormLoginComponent {
   }
 
   login() {
-    console.log(this.formLogin)
+    if (this.formLogin.invalid) {
+      this.toastr.error('Verifique se os campos estão corretos!', 'Erro');
+      return;
+    }
+
+    this.authService.login(this.formLogin.get('email')?.value, this.formLogin.get('senha')?.value)
   }
 }
