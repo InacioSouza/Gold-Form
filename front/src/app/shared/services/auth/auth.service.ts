@@ -17,9 +17,7 @@ export class AuthService {
   login(email: string, senha: string) {
     return this.http.post<{ token: string }>(this.url, { email, senha }, {
       withCredentials: true
-    }
-    )
-      .subscribe({
+    }).subscribe({
         next: (response) => {
           localStorage.setItem('token', response.token);
           this.router.navigate(['/dashboard']);
@@ -28,7 +26,6 @@ export class AuthService {
           console.log(err);
           this.toastr.error('Erro ao efetuar login, verifique se os dados estão corretos!', 'Erro')
         }
-
       });
   }
 

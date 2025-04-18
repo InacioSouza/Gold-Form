@@ -31,6 +31,6 @@ export class FormLoginComponent {
       return;
     }
 
-    this.authService.login(this.formLogin.get('email')?.value, this.formLogin.get('senha')?.value)
+    this.authService.login(this.formLogin.get('email')?.value, this.formLogin.get('senha')?.value);
   }
 }
