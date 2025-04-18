@@ -4,6 +4,7 @@ import { Cidade } from 'src/app/dominio/Cidade';
 import { DadosCadastro } from 'src/app/dominio/DadosCadastro';
 import { UF } from 'src/app/dominio/UF';
 import { LocalidadeService } from 'src/app/shared/services/localidade.service';
+import {UsuarioService} from "../../shared/services/usuario.service";
 
 @Component({
   selector: 'app-form-cadastro',
@@ -33,7 +34,7 @@ export class FormCadastroComponent implements OnInit {
   ufs: UF[] = [];
   cidades: Cidade[] = [];
 
-  constructor(private localidade: LocalidadeService, private toastr: ToastrService) { }
+  constructor(private localidade: LocalidadeService, private toastr: ToastrService, private usuarioService: UsuarioService) { }
 
   ngOnInit(): void {
     this.localidade.listaUF().subscribe(resposta => {
@@ -75,5 +76,11 @@ export class FormCadastroComponent implements OnInit {
     if (formValido === false) {
       this.toastr.error('Dados incorretos, verifique os campos!', 'Erro');
     }
+
+    this.usuarioService.cadastrar(this.dados).subscribe(usuario => {
+      this.toastr.success('Cadastro efetuado com sucesso!', 'Sucesso');
+    }, err => {
+      this.toastr.error('Erro ao efetuar cadastro, tente novamente!', 'Erro');
+    })
   }
 }

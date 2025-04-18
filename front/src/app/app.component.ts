@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {TokenExpirationService} from "./shared/services/auth/token.expiration.service";
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'gold-form';
+
+  constructor(private tokenExpirationService: TokenExpirationService) {
+    this.tokenExpirationService.startTokenMonitor();
+  }
+
+
 }

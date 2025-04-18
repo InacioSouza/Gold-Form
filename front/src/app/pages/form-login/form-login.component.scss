@@ -69,8 +69,8 @@
           font-weight: 450;
 
           &::placeholder {
-            color: white;
-            font-weight: 350;
+            color: rgba(255, 255, 255, 0.71);
+            font-weight: 250;
           }
 
           @media (max-width: 500px) {

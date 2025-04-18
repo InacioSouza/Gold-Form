@@ -20,6 +20,7 @@ export class AuthService {
     }).subscribe({
         next: (response) => {
           localStorage.setItem('token', response.token);
+          this.toastr.success('Login efetuado com sucesso!', 'Sucesso');
           this.router.navigate(['/dashboard']);
         },
         error: (err) => {
@@ -31,6 +32,7 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem('token');
+    this.toastr.warning('Você foi desconectado, faça login novamente!','Aviso')
     this.router.navigate(['/login']);
   }
 
