@@ -47,7 +47,7 @@
 
             <div class="entrada">
                 <label for="estado">Estado<small>*</small></label>
-                <select #estado="ngModel" [(ngModel)]="dados.endereco.estado" name="estado" id="estado"
+                <select #estado="ngModel" [(ngModel)]="dados.endereco.cidade.estado.nome" name="estado" id="estado"
                     (change)="carregaCidades($event)" required
                     [class.entrada-invalida]="!estado.valid && estado.touched">
                     <option *ngFor="let uf of ufs" [value]="uf.sigla">{{uf.nome + ' - ' + uf.sigla}}</option>
@@ -57,7 +57,7 @@
 
             <div class="entrada">
                 <label for="cidade">Cidade<small>*</small></label>
-                <select #cidade="ngModel" [(ngModel)]="dados.endereco.cidade" name="cidade" id="cidade" required
+                <select #cidade="ngModel" [(ngModel)]="dados.endereco.cidade.nome" name="cidade" id="cidade" required
                     [class.entrada-invalida]="!cidade.valid && cidade.touched">
                     <option *ngFor="let cidade of cidades" [value]="cidade.nome">{{ cidade.nome }}</option>
                 </select>
@@ -136,5 +136,6 @@
 
     <div class="btn">
         <button (click)="cadastrar(formCadastro.valid)">Cadastrar</button>
+        <button routerLink="/login" >Ir para login</button>
     </div>
 </div>

@@ -1,9 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { ToastrService } from 'ngx-toastr';
-import { Cidade } from 'src/app/dominio/Cidade';
-import { DadosCadastro } from 'src/app/dominio/DadosCadastro';
-import { UF } from 'src/app/dominio/UF';
-import { LocalidadeService } from 'src/app/shared/services/localidade.service';
+import {Component, OnInit} from '@angular/core';
+import {ToastrService} from 'ngx-toastr';
+import {Cidade} from 'src/app/dominio/Cidade';
+import {UF} from 'src/app/dominio/UF';
+import {LocalidadeService} from 'src/app/shared/services/localidade.service';
 import {UsuarioService} from "../../shared/services/usuario.service";
 
 @Component({
@@ -13,7 +12,7 @@ import {UsuarioService} from "../../shared/services/usuario.service";
 })
 export class FormCadastroComponent implements OnInit {
 
-  dados: DadosCadastro = {
+  dados: any = {
     nome: '',
     idade: '',
     email: '',
@@ -22,8 +21,13 @@ export class FormCadastroComponent implements OnInit {
     confirmaSenha: '',
     endereco: {
       cep: '',
-      estado: '',
-      cidade: '',
+      cidade: {
+        nome: '',
+        estado: {
+          nome: '',
+          sigla: ''
+        }
+      },
       bairro: '',
       rua: '',
       numero: '',
@@ -57,8 +61,8 @@ export class FormCadastroComponent implements OnInit {
     }
 
     this.localidade.dadosPorCEP(cep).subscribe(resposta => {
-      this.dados.endereco.estado = resposta.uf;
-      this.dados.endereco.cidade = resposta.localidade;
+      this.dados.endereco.cidade.estado.nome = resposta.uf;
+      this.dados.endereco.cidade.nome = resposta.localidade;
       this.dados.endereco.bairro = resposta.bairro;
       this.dados.endereco.rua = resposta.logradouro;
     })
@@ -75,6 +79,7 @@ export class FormCadastroComponent implements OnInit {
   cadastrar(formValido: boolean | null) {
     if (formValido === false) {
       this.toastr.error('Dados incorretos, verifique os campos!', 'Erro');
+      return;
     }
 
     this.usuarioService.cadastrar(this.dados).subscribe(usuario => {
